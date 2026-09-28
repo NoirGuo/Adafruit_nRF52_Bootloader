@@ -21,7 +21,7 @@ jobs:
                     
     steps:
     - name: Setup Python
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v5
 
     - name: Checkout Code
       uses: actions/checkout@v4
@@ -54,13 +54,13 @@ jobs:
     - name: Linker Map
       run: make BOARD=${{ matrix.board }} linkermap
 
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: ${{ matrix.board }}
         path: _bin/${{ matrix.board }}
 
     - name: Upload Release Asset
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       if: ${{ github.event_name == 'release' }}
       with:
         files: |
